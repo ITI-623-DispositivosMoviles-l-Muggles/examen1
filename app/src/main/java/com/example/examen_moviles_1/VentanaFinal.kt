@@ -2,10 +2,7 @@ package com.example.examen_moviles_1
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class VentanaFinal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,10 +18,12 @@ class VentanaFinal : AppCompatActivity() {
 
         tvMontoFinal.text = "Monto final: $$montoFinal"
 
+        // Ajustar la lógica para los mensajes finales
         when {
+            montoFinal == 0.0 -> tvMensajeFinal.text = "Lo perdiste todo….No vuelvas a jugar!"
             montoFinal > montoInicial -> tvMensajeFinal.text = "¡Eres un ganador!"
-            montoFinal < montoInicial -> tvMensajeFinal.text = "Lo perdiste todo….No vuelvas a jugar!"
-            else -> tvMensajeFinal.text = "Te salvaste..."
+            montoFinal < montoInicial -> tvMensajeFinal.text = "No deberías de jugar…Retírate"
+            montoFinal == montoInicial -> tvMensajeFinal.text = "Te salvaste..."
         }
     }
 }

@@ -20,6 +20,7 @@ class VentanaJuegoActivity : AppCompatActivity() {
     private var montoInicial: Double = 0.0
     private var cantidadDados: Int = 2
     private var radioButtonSeleccionado: RadioButton? = null
+    private var contadorVictorias: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,7 +121,6 @@ class VentanaJuegoActivity : AppCompatActivity() {
             valorDado3 = (1..6).random()
         }
 
-        // Mostrar los resultados de los dados
         mostrarResultadoDados(valorDado1, dado1)
         mostrarResultadoDados(valorDado2, dado2)
         if (cantidadDados == 3) {
@@ -130,6 +130,13 @@ class VentanaJuegoActivity : AppCompatActivity() {
         // Calcular el resultado del juego
         val totalDados = valorDado1 + valorDado2 + if (cantidadDados == 3) valorDado3 else 0
         verificarResultado(totalDados, monto)
+
+        // Verificar condiciones para finalizar el juego
+        if (montoActual <= 0) {
+            retirarseDelJuego()
+        } else if (contadorVictorias >= 3) {
+            retirarseDelJuego()
+        }
     }
 
     private fun mostrarResultadoDados(valor: Int, dado: ImageView) {
@@ -153,16 +160,16 @@ class VentanaJuegoActivity : AppCompatActivity() {
 
         val numeroApuesta = radioButtonSeleccionado?.text.toString().toInt()
 
-        // Comprobar si el jugador ganó o perdió
+
         if (totalDados == numeroApuesta) {
-            // El jugador ganó
             montoActual += montoApuesta * 2
+            contadorVictorias++
             estadoJuego.setImageResource(R.drawable.ic_happy_face)
 
             Toast.makeText(this, "¡Felicidades! Eres un ganador", Toast.LENGTH_LONG).show()
         } else {
-            // El jugador perdió
             montoActual -= montoApuesta
+            contadorVictorias = 0
             estadoJuego.setImageResource(R.drawable.ic_sad_face)
 
             Toast.makeText(this, "Has perdido esta ronda", Toast.LENGTH_LONG).show()
@@ -170,7 +177,6 @@ class VentanaJuegoActivity : AppCompatActivity() {
 
         // Actualizar el monto disponible
         montoDisponible.text = "Monto disponible: ₡%.2f".format(montoActual)
-
     }
 
     private fun retirarseDelJuego() {

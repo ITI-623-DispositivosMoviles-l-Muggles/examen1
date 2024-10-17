@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Columna Izquierda -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <!-- Título del Juego -->
+        <TextView
+            android:id="@+id/tvTituloJuego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título del Juego"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Nombre del Jugador -->
+        <TextView
+            android:text="Jugador:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etNombreJugador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del Jugador" />
+
+        <!-- Monto Disponible -->
+        <TextView
+            android:text="Monto Disponible:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvMontoDisponible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="16sp" />
+
+        <!-- Monto Apostado -->
+        <TextView
+            android:text="Monto Apostado:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etMontoApostado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese su apuesta"
+            android:inputType="numberDecimal" />
+
+        <!-- Dados -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <!-- Aquí se mostrarán las imágenes de los dados -->
+            <ImageView
+                android:id="@+id/dado1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/dado_placeholder" />
+            <ImageView
+                android:id="@+id/dado2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/dado_placeholder" />
+            <ImageView
+                android:id="@+id/dado3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Botón Lanzar Dados -->
+        <Button
+            android:id="@+id/btnLanzarDados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lanzar Dados" />
+    </LinearLayout>/**/
+
+    <!-- Columna Central (Apuestas) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="Marca tu Apuesta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Radiobutton para apuestas -->
+        <GridLayout
+            android:id="@+id/gridApuestas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+            <!-- Los RadioButtons se agregarán dinámicamente desde el código -->
+        </GridLayout>
+</LinearLayout>
+
+    <!-- Columna Derecha (Estatus del Juego) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="Estatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/ivEstadoJuego"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_question_mark" />
+        <Button
+            android:id="@+id/btnRetirarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Retirarse del Juego" />
+    </LinearLayout>
+</LinearLayout>

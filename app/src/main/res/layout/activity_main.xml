@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp">
+
+            <ImageView
+                android:id="@+id/game"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_launcher_background"
+                android:paddingBottom="16dp" />
+
+            <TextView
+                android:id="@+id/tvTituloJuego"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Título del Juego"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingBottom="16dp"
+                android:textColor="@android:color/white" />
+
+        </TableRow>
+
+        <!-- Contenedor de datos del jugador -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            android:padding="16dp">
+
+            <!-- Fila: Icono -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:id="@+id/ivIconoJuego"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_launcher_background"
+                android:paddingBottom="16dp" />
+            </TableRow>
+
+            <!-- Fila: Nombre del jugador -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <TextView
+                    android:text="Nombre del Jugador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp" />
+                <EditText
+                    android:id="@+id/etNombreJugador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese su nombre"
+                    android:inputType="textPersonName"
+                    android:padding="8dp" />
+            </TableRow>
+
+            <!-- Fila: Fecha de Nacimiento -->
+            <TableRow
+                android:layout_width="344dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="103dp"
+                    android:text="Fecha de Nacimiento"
+                    android:textSize="12sp" />
+
+                <DatePicker
+                    android:id="@+id/dpFechaNacimiento"
+                    android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+            </TableRow>
+
+            <!-- Fila: Fondo de Apuestas -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp">
+                <TextView
+                    android:text="Fondo de Apuestas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp" />
+                <EditText
+                    android:id="@+id/etFondoApuestas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese su apuesta"
+                    android:inputType="numberDecimal"
+                    android:padding="8dp" />
+            </TableRow>
+
+            <!-- Fila: Cantidad de Dados -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp">
+                <TextView
+                    android:text="Cantidad de Dados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp" />
+                <Spinner
+                    android:id="@+id/spCantidadDados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+        </TableLayout>
+
+        <!-- Botón Ingresar -->
+        <Button
+            android:id="@+id/btnIngresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingresar"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:textColor="@android:color/white" />
+
+        <!-- Mensaje de Advertencia -->
+        <TextView
+            android:id="@+id/tvAdvertencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Los juegos de azar pueden ser nocivos y adictivos. Juega con responsabilidad."
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
+    </LinearLayout>
+</ScrollView>

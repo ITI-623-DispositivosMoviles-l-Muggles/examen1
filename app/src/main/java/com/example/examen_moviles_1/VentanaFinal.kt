@@ -12,7 +12,6 @@ class VentanaFinal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ventana_final)
 
-        // Obtener el monto inicial y final desde el Intent
         val montoInicial = intent.getDoubleExtra("montoInicial", 0.0)
         val montoFinal = intent.getDoubleExtra("montoFinal", 100.0)
 
@@ -22,10 +21,9 @@ class VentanaFinal : AppCompatActivity() {
 
         tvMontoFinal.text = "Monto final: $$montoFinal"
 
-        // Determinar el mensaje final según la comparación entre monto inicial y final
         when {
             montoFinal > montoInicial -> tvMensajeFinal.text = "¡Eres un ganador!"
-            montoFinal < montoInicial -> tvMensajeFinal.text = "¡Eres un perdedor!"
+            montoFinal < montoInicial -> tvMensajeFinal.text = "Lo perdiste todo….No vuelvas a jugar!"
             else -> tvMensajeFinal.text = "Te salvaste..."
         }
     }

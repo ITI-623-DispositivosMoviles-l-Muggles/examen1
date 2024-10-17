@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="titulo_juego">The muggles casino</string>
+    <string name="nombre_jugador">Player Name</string>
+    <string name="hint_nombre_jugador">Enter your name</string>
+    <string name="fecha_nacimiento">Birthdate</string>
+    <string name="fondo_apuestas">Betting Fund</string>
+    <string name="hint_fondo_apuestas">Place your bet</string>
+    <string name="cantidad_dados">Number of Dice</string>
+    <string name="ingresar">Get into</string>
+    <string name="advertencia">Gambling can be harmful and addictive. Please gamble responsibly.</string>
+    <string name="monto_disponible">Available Amount:</string>
+    <string name="monto_apostado">Bet Amount:</string>
+    <string name="hint_monto_apostado">Place your bet</string>
+    <string name="lanzar_dados">Throwing Dice</string>
+    <string name="marca_apuesta">Place your bet</string>
+    <string name="estatus">Status</string>
+    <string name="retirarse_juego">Withdrawing from the Game</string>
 </resources>

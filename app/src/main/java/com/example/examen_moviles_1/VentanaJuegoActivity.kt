@@ -26,7 +26,7 @@ class VentanaJuegoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ventana_juego_vertical)
 
         // Inicialización de las vistas
-        nombreJugador = findViewById(R.id.etNombreJugador)  // Cambiado a EditText
+        nombreJugador = findViewById(R.id.etNombreJugador)
         montoDisponible = findViewById(R.id.tvMontoDisponible)
         montoApostado = findViewById(R.id.etMontoApostado)
         dado1 = findViewById(R.id.dado1)
@@ -35,40 +35,35 @@ class VentanaJuegoActivity : AppCompatActivity() {
         gridApuestas = findViewById(R.id.gridApuestas)
         estadoJuego = findViewById(R.id.ivEstadoJuego)
 
-        // Recibir los datos desde MainActivity
         val nombre = intent.getStringExtra("NOMBRE_JUGADOR") ?: "Jugador"
         montoInicial = intent.getDoubleExtra("APUESTA_INICIAL", 100.0)
         val apuestaInicial = montoInicial
-        cantidadDados = intent.getIntExtra("CANTIDAD_DADOS", 2) // Recibir cantidad de dados (2 o 3)
+        cantidadDados = intent.getIntExtra("CANTIDAD_DADOS", 2)
 
-        // Asignar el nombre y el monto inicial
-        nombreJugador.setText(nombre)  // Cambiado para EditText
+        nombreJugador.setText(nombre)
         montoActual = apuestaInicial
         montoDisponible.text = "Monto disponible: ₡%.2f".format(montoActual)
 
-        // Configurar las opciones de apuestas
         configurarOpcionesDeApuesta()
 
-        // Mostrar u ocultar el tercer dado basado en la cantidad seleccionada
+
         if (cantidadDados == 3) {
             dado3.visibility = View.VISIBLE
         } else {
             dado3.visibility = View.GONE
         }
 
-        // Botón para retirarse del juego
         findViewById<Button>(R.id.btnRetirarse).setOnClickListener {
             retirarseDelJuego()
         }
 
-        // Botón para lanzar los dados
         findViewById<Button>(R.id.btnLanzarDados).setOnClickListener {
             lanzarDados()
         }
     }
 
     private fun configurarOpcionesDeApuesta() {
-        gridApuestas.removeAllViews() // Limpiar cualquier RadioButton previo
+        gridApuestas.removeAllViews()
 
         // Establecer el rango de apuestas según la cantidad de dados
         val rangoApuestas = if (cantidadDados == 3) 3..18 else 2..12
@@ -129,7 +124,7 @@ class VentanaJuegoActivity : AppCompatActivity() {
         mostrarResultadoDados(valorDado1, dado1)
         mostrarResultadoDados(valorDado2, dado2)
         if (cantidadDados == 3) {
-            mostrarResultadoDados(valorDado3, dado3)  // Mostrar tercer dado si es necesario
+            mostrarResultadoDados(valorDado3, dado3)
         }
 
         // Calcular el resultado del juego
@@ -138,7 +133,6 @@ class VentanaJuegoActivity : AppCompatActivity() {
     }
 
     private fun mostrarResultadoDados(valor: Int, dado: ImageView) {
-        // Cambiar la imagen del dado según el valor
         val resId = when (valor) {
             1 -> R.drawable.dado1
             2 -> R.drawable.dado2
@@ -152,7 +146,6 @@ class VentanaJuegoActivity : AppCompatActivity() {
     }
 
     private fun verificarResultado(totalDados: Int, montoApuesta: Double) {
-        // Verificar que se haya seleccionado una apuesta
         if (radioButtonSeleccionado == null) {
             Toast.makeText(this, "Selecciona un número para apostar", Toast.LENGTH_SHORT).show()
             return
@@ -166,14 +159,12 @@ class VentanaJuegoActivity : AppCompatActivity() {
             montoActual += montoApuesta * 2
             estadoJuego.setImageResource(R.drawable.ic_happy_face)
 
-            // Mostrar mensaje de ganador
             Toast.makeText(this, "¡Felicidades! Eres un ganador", Toast.LENGTH_LONG).show()
         } else {
             // El jugador perdió
             montoActual -= montoApuesta
             estadoJuego.setImageResource(R.drawable.ic_sad_face)
 
-            // Mostrar mensaje de pérdida
             Toast.makeText(this, "Has perdido esta ronda", Toast.LENGTH_LONG).show()
         }
 
@@ -184,8 +175,8 @@ class VentanaJuegoActivity : AppCompatActivity() {
 
     private fun retirarseDelJuego() {
         val intent = Intent(this, VentanaFinal::class.java).apply {
-            putExtra("montoInicial", montoInicial) // Pasa el monto inicial
-            putExtra("montoFinal", montoActual)   // Pasa el monto final
+            putExtra("montoInicial", montoInicial)
+            putExtra("montoFinal", montoActual)
         }
         startActivity(intent)
     }

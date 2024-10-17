@@ -100,12 +100,17 @@ class MainActivity : AppCompatActivity() {
 
     // Función para cargar la ventana de juego si los datos son válidos
     private fun cargarVentanaJuego(nombre: String, dados: Int, apuesta: Double) {
-        // Navegar a la ventana del juego (VentanaJuegoActivity)
-        val intent = Intent(this, VentanaJuegoActivity::class.java).apply {
-            putExtra("NOMBRE_JUGADOR", nombre)
-            putExtra("CANTIDAD_DADOS", dados)
-            putExtra("APUESTA_INICIAL", apuesta)
+        try {
+            val intent = Intent(this, VentanaJuegoActivity::class.java).apply {
+                putExtra("NOMBRE_JUGADOR", nombre)
+                putExtra("CANTIDAD_DADOS", dados)
+                putExtra("APUESTA_INICIAL", apuesta)
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error al iniciar el juego: ${e.message}", Toast.LENGTH_LONG).show()
         }
-        startActivity(intent)
     }
+
 }

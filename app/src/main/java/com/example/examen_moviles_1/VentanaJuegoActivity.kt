@@ -19,13 +19,14 @@ class VentanaJuegoActivity : AppCompatActivity() {
     private var montoActual: Double = 0.0
     private var montoInicial: Double = 0.0
     private var cantidadDados: Int = 2
-    private var radioButtonSeleccionado: RadioButton? = null  // Guardar el RadioButton seleccionado
+    private var radioButtonSeleccionado: RadioButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ventana_juego)
+        setContentView(R.layout.activity_ventana_juego_vertical)
+
         // Inicialización de las vistas
-        nombreJugador = findViewById(R.id.etNombreJugador)
+        nombreJugador = findViewById(R.id.etNombreJugador)  // Cambiado a EditText
         montoDisponible = findViewById(R.id.tvMontoDisponible)
         montoApostado = findViewById(R.id.etMontoApostado)
         dado1 = findViewById(R.id.dado1)
@@ -37,21 +38,22 @@ class VentanaJuegoActivity : AppCompatActivity() {
         // Recibir los datos desde MainActivity
         val nombre = intent.getStringExtra("NOMBRE_JUGADOR") ?: "Jugador"
         montoInicial = intent.getDoubleExtra("APUESTA_INICIAL", 100.0)
-        val apuestaInicial = intent.getDoubleExtra("APUESTA_INICIAL", 100.0)
+        val apuestaInicial = montoInicial
         cantidadDados = intent.getIntExtra("CANTIDAD_DADOS", 2) // Recibir cantidad de dados (2 o 3)
 
         // Asignar el nombre y el monto inicial
-        nombreJugador.text = nombre
+        nombreJugador.setText(nombre)  // Cambiado para EditText
         montoActual = apuestaInicial
         montoDisponible.text = "Monto disponible: ₡%.2f".format(montoActual)
-        // Configurar las opciones de apuestas dinámicamente según la cantidad de dados
+
+        // Configurar las opciones de apuestas
         configurarOpcionesDeApuesta()
 
         // Mostrar u ocultar el tercer dado basado en la cantidad seleccionada
         if (cantidadDados == 3) {
-            dado3.visibility = View.VISIBLE  // Mostrar tercer dado
+            dado3.visibility = View.VISIBLE
         } else {
-            dado3.visibility = View.GONE  // Ocultar tercer dado si solo se usan 2 dados
+            dado3.visibility = View.GONE
         }
 
         // Botón para retirarse del juego
@@ -59,6 +61,7 @@ class VentanaJuegoActivity : AppCompatActivity() {
             retirarseDelJuego()
         }
 
+        // Botón para lanzar los dados
         findViewById<Button>(R.id.btnLanzarDados).setOnClickListener {
             lanzarDados()
         }

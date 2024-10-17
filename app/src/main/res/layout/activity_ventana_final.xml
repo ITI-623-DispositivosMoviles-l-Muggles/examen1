@@ -7,7 +7,31 @@
     android:gravity="center"
     android:padding="16dp">
 
-    <!-- Mensaje de resultado final -->
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/game"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvTituloJuego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_juego"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"
+            android:textColor="@android:color/white" />
+
+    </TableRow>
+
     <TextView
         android:id="@+id/tvMensajeFinal"
         android:layout_width="wrap_content"
@@ -17,7 +41,6 @@
         android:textStyle="bold"
         android:gravity="center" />
 
-    <!-- Monto final del jugador -->
     <TextView
         android:id="@+id/tvMontoFinal"
         android:layout_width="wrap_content"

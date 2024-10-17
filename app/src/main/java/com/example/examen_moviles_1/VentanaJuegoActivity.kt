@@ -17,13 +17,13 @@ class VentanaJuegoActivity : AppCompatActivity() {
     private lateinit var gridApuestas: GridLayout
     private lateinit var estadoJuego: ImageView
     private var montoActual: Double = 0.0
+    private var montoInicial: Double = 0.0
     private var cantidadDados: Int = 2
     private var radioButtonSeleccionado: RadioButton? = null  // Guardar el RadioButton seleccionado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ventana_juego)
-
         // Inicialización de las vistas
         nombreJugador = findViewById(R.id.etNombreJugador)
         montoDisponible = findViewById(R.id.tvMontoDisponible)
@@ -36,6 +36,7 @@ class VentanaJuegoActivity : AppCompatActivity() {
 
         // Recibir los datos desde MainActivity
         val nombre = intent.getStringExtra("NOMBRE_JUGADOR") ?: "Jugador"
+        montoInicial = intent.getDoubleExtra("APUESTA_INICIAL", 100.0)
         val apuestaInicial = intent.getDoubleExtra("APUESTA_INICIAL", 100.0)
         cantidadDados = intent.getIntExtra("CANTIDAD_DADOS", 2) // Recibir cantidad de dados (2 o 3)
 
@@ -43,7 +44,6 @@ class VentanaJuegoActivity : AppCompatActivity() {
         nombreJugador.text = nombre
         montoActual = apuestaInicial
         montoDisponible.text = "Monto disponible: ₡%.2f".format(montoActual)
-
         // Configurar las opciones de apuestas dinámicamente según la cantidad de dados
         configurarOpcionesDeApuesta()
 
@@ -159,39 +159,30 @@ class VentanaJuegoActivity : AppCompatActivity() {
 
         // Comprobar si el jugador ganó o perdió
         if (totalDados == numeroApuesta) {
+            // El jugador ganó
             montoActual += montoApuesta * 2
             estadoJuego.setImageResource(R.drawable.ic_happy_face)
+
+            // Mostrar mensaje de ganador
+            Toast.makeText(this, "¡Felicidades! Eres un ganador", Toast.LENGTH_LONG).show()
         } else {
+            // El jugador perdió
             montoActual -= montoApuesta
             estadoJuego.setImageResource(R.drawable.ic_sad_face)
+
+            // Mostrar mensaje de pérdida
+            Toast.makeText(this, "Has perdido esta ronda", Toast.LENGTH_LONG).show()
         }
 
         // Actualizar el monto disponible
         montoDisponible.text = "Monto disponible: ₡%.2f".format(montoActual)
 
-        verificarEstadoFinal()
-    }
-
-    private fun verificarEstadoFinal() {
-        when {
-            montoActual > 100 -> Toast.makeText(this, "Eres un ganador", Toast.LENGTH_LONG).show()
-            montoActual == 100.0 -> Toast.makeText(this, "Te salvaste...", Toast.LENGTH_LONG).show()
-            montoActual < 100 && montoActual > 0 -> Toast.makeText(
-                this,
-                "No deberías de jugar... Retírate",
-                Toast.LENGTH_LONG
-            ).show()
-            montoActual == 0.0 -> Toast.makeText(
-                this,
-                "Lo perdiste todo... No vuelvas a jugar",
-                Toast.LENGTH_LONG
-            ).show()
-        }
     }
 
     private fun retirarseDelJuego() {
         val intent = Intent(this, VentanaFinal::class.java).apply {
-            putExtra("montoFinal", montoActual)
+            putExtra("montoInicial", montoInicial) // Pasa el monto inicial
+            putExtra("montoFinal", montoActual)   // Pasa el monto final
         }
         startActivity(intent)
     }

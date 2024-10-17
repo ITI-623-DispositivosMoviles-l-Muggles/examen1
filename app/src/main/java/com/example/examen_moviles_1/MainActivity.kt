@@ -60,9 +60,9 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Validar la edad mínima de 21 años
+        // Validar la edad mínima de 18 años
         if (edadJugador < 18) {
-            mostrarMensaje("Lo sentimos, debes tener al menos 21 años para jugar.")
+            mostrarMensaje("Lo sentimos, debes tener al menos 18 años para jugar.")
             return
         }
 

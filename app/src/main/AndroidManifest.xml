@@ -16,6 +16,9 @@
             android:name=".VentanaJuegoActivity"
             android:exported="false" />
         <activity
+            android:name=".VentanaFinal"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
